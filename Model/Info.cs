@@ -11,7 +11,7 @@ namespace addVehicle.Model
     public class Info
     {
         public string pathGta { get; set; }
-        public string nameVehicle { get; set; }
+        public string nameVehicleToCopy { get; set; }
         public int id { get; set; }
         public VehicleInfo txdVehicle { get; set; }
         public VehicleInfo dffVehicle { get; set; }
@@ -61,6 +61,7 @@ namespace addVehicle.Model
             if (string.IsNullOrEmpty(visualName)) errorMessage += "There isn't any visual name.\n";
             if (string.IsNullOrEmpty(idName)) errorMessage += "There isn't any id name.\n";
             if (!string.IsNullOrEmpty(idName) && idName.Length > 7 ) errorMessage += "The id name is too long (max 7 char).\n";
+            if (string.IsNullOrEmpty(nameVehicleToCopy)) errorMessage += "There isn't vehicle to copy.\n";
         }
 
         private void checkPathGta()
