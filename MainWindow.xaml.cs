@@ -41,10 +41,7 @@ namespace addVehicle
             dialog.Multiselect = false;
             dialog.Title = "Select a folder";
 
-            // Show open folder dialog box
             bool? result = dialog.ShowDialog();
-
-            // Process open folder dialog box results
             if (result == true)
             {
                 // Get the selected folder
@@ -90,21 +87,13 @@ namespace addVehicle
 
         public async void generateConfig(object sender, RoutedEventArgs e)
         {
-            /*string path = @"A:\Progetti\Config-generator-car-GTA-SA\data\handling.cfg";
-            string list = "";
-            var lines = File.ReadAllLines(path).Skip(89).Take(188).ToArray();
-            for (var i = 0; i < lines.Length; i += 1)
-            {
-                var line = lines[i].Split(" ")[0];
-                list += $"\"{line}\",";
-            }*/
             if (info.checkField())
             {
                 mainGenerator gen = new mainGenerator();
-                bool genResult = await gen.start();
+                List<Generator> genResult = await gen.start(info);
                 string caption = "";
                 string message = "";
-                if (genResult == true) {
+                if (!genResult.Any(x=>x.result == false)) {
                     caption = "Done";
                     message = "New Vehicle added!";
                     MessageBoxButton button = MessageBoxButton.OK;
@@ -124,7 +113,7 @@ namespace addVehicle
 
         public void onSelectComboVehicle(object sender, RoutedEventArgs e)
         {
-            info.nameVehicle = comboVehicle.SelectedItem.ToString();
+            info.nameVehicleToCopy = comboVehicle.SelectedItem.ToString();
         }
 
         public void setId(object sender, RoutedEventArgs e)
