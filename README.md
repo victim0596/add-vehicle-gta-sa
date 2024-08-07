@@ -1,2 +1,2 @@
-# genConfNewCar
-This tool generate all configuration for a new car in GTA SA
+# Add new vehicle to GTA SA
+This tool add new vehicle (not replace) in GTA SA.
