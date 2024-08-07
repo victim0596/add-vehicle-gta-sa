@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace genConf.Model
+namespace addVehicle.Model
 {
     public class Info
     {

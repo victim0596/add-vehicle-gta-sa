@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows;
 using System.Xml.Linq;
 
-namespace genConf
+namespace addVehicle
 {
     public static class Constant
     {

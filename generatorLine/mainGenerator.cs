@@ -1,31 +1,38 @@
-﻿using System;
+﻿using addVehicle.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace genConf.generatorLinee
+namespace addVehicle.generatorLinee
 {
     public class mainGenerator
     {
-        public async Task<bool> start() 
+        public async Task<List<Generator>> start() 
         {
+            List<Generator> list = new List<Generator>();
             genHandling genHandling = new genHandling();
-            bool checkGenHandling = await genHandling.start();
+            Generator checkGenHandling = await genHandling.start();
+            list.Add(checkGenHandling);
 
             genCarcols genCarcols = new genCarcols();
-            bool checkgenCarcols = await genCarcols.start();
+            Generator checkgenCarcols = await genCarcols.start();
+            list.Add(checkgenCarcols);
 
             genCargrp genCargrp = new genCargrp();
-            bool checkgenCargrp = await genCargrp.start();
+            Generator checkgenCargrp = await genCargrp.start();
+            list.Add(checkgenCargrp);
 
             genCarMods genCarMods = new genCarMods();
-            bool checkgenCarMods = await genCarMods.start();
+            Generator checkgenCarMods = await genCarMods.start();
+            list.Add(checkgenCarMods);
 
             genVehicles genVehicles = new genVehicles();
-            bool checkgenVehicles = await genVehicles.start();
+            Generator checkgenVehicles = await genVehicles.start();
+            list.Add(checkgenVehicles);
 
-            return checkGenHandling;
+            return list;
         }
     }
 }

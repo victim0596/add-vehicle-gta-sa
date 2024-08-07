@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace addVehicle.Model
 {
-    public class VehicleInfo
+    public class Generator
     {
-        public string path {  get; set; }
-        public string name { get; set; }
+        public bool result { get; set; }
+        public string line { get; set; }
     }
 }
