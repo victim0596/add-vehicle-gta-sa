@@ -9,28 +9,28 @@ namespace addVehicle.generatorLinee
 {
     public class mainGenerator
     {
-        public async Task<List<Generator>> start() 
+        public async Task<List<Generator>> start(Info info) 
         {
             List<Generator> list = new List<Generator>();
             genHandling genHandling = new genHandling();
-            Generator checkGenHandling = await genHandling.start();
+            Generator checkGenHandling = await genHandling.start(info);
             list.Add(checkGenHandling);
 
-            genCarcols genCarcols = new genCarcols();
-            Generator checkgenCarcols = await genCarcols.start();
+            /*genCarcols genCarcols = new genCarcols();
+            Generator checkgenCarcols = await genCarcols.start(info);
             list.Add(checkgenCarcols);
 
             genCargrp genCargrp = new genCargrp();
-            Generator checkgenCargrp = await genCargrp.start();
+            Generator checkgenCargrp = await genCargrp.start(info);
             list.Add(checkgenCargrp);
 
             genCarMods genCarMods = new genCarMods();
-            Generator checkgenCarMods = await genCarMods.start();
+            Generator checkgenCarMods = await genCarMods.start(info);
             list.Add(checkgenCarMods);
 
             genVehicles genVehicles = new genVehicles();
-            Generator checkgenVehicles = await genVehicles.start();
-            list.Add(checkgenVehicles);
+            Generator checkgenVehicles = await genVehicles.start(info);
+            list.Add(checkgenVehicles);*/
 
             return list;
         }

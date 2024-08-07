@@ -9,7 +9,7 @@ namespace addVehicle.generatorLinee
 {
     public class genVehicles
     {
-        public Task<Generator> start()
+        public Task<Generator> start(Info info)
         {
             return Task.FromResult(new Generator());
         }
