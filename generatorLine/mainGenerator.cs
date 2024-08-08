@@ -35,9 +35,8 @@ namespace addVehicle.generatorLinee
 
             SaveFile save = new SaveFile();
             bool saveCheck = save.save(list, audioSettings, info);
-            
+            log.Info("Finished generation of configuration file for vehicle.");
             checkGenerator(list, saveCheck); //todo
-
             return list;
         }
 
@@ -86,6 +85,7 @@ namespace addVehicle.generatorLinee
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Information;
                 MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
+                log.Info("New vehicle added successfully.");
             }
             else
             {

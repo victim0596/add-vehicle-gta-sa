@@ -48,7 +48,6 @@ namespace addVehicle.generatorLine
             //vehicleAudioSettings
             GenVehicleAudio genVehicleAudio = new GenVehicleAudio();
             bool checkVehicleAudio = genVehicleAudio.genAndSave(info, audioSettings);
-
             return checkMergeAndSave && checkGenFxt && checkModFile && checkVehicleAudio;
         }
     }
