@@ -28,9 +28,6 @@ namespace addVehicle.Const
 
 {carmods.dat}
 
-[cargrp dat]
-
-{cargrp.dat}
 ";
         public static string templateFxd = "{vehicleNameId} {visualVehicleName}";
 

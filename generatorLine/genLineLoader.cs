@@ -26,12 +26,6 @@ namespace addVehicle.generatorLine
                         lineeToReturn = lineeToReturn.Replace(info.nameVehicleToCopy.ToLower(), info.idName.ToLower());
                         break;
                     }
-                case "cargrp.dat":
-                    {
-                        var split = lineeToReturn.Split("#");
-                        lineeToReturn = $"{info.idName.ToLower()} # {split[1]}";
-                        break;
-                    }
                 case "vehicles.ide":
                     {
                         IList<string> lines = lineeToReturn.Split(",").ToList();
