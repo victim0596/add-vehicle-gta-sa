@@ -30,7 +30,7 @@ namespace addVehicle.generatorLinee
             Generator checkgenVehicles = await gen(info, "vehicles.ide", true, true);
             list.Add(checkgenVehicles);
 
-            Generator audioSettings = await gen(info, "gtasa_vehicleAudioSettings.cfg", true, false);
+            Generator audioSettings = await gen(info, "gtasa_vehicleAudioSettings.cfg", true, true);
 
             SaveFile save = new SaveFile();
             bool saveCheck = save.save(list, audioSettings, info);
