@@ -23,8 +23,8 @@ namespace addVehicle.generatorLine
             MergeLine mergeLine = new MergeLine();
             bool checkMergeAndSave = mergeLine.mergeAndSave(listGenerator, info);
             //name.fxd
-            Genfxd genfxd = new Genfxd();
-            bool checkGenFxd = genfxd.genAndSave(info);
+            Genfxt genfxt = new Genfxt();
+            bool checkGenFxt = genfxt.genAndSave(info);
             //dff and txd
             GenModFile genModFile = new GenModFile();
             bool checkModFile = genModFile.genAndSave(info);

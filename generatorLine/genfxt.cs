@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace addVehicle.generatorLine
 {
-    public class Genfxd
+    public class Genfxt
     {
         public bool genAndSave(Info info)
         {
             string templatefxd = template.templateFxd.Replace("{vehicleNameId}", info.idName.ToUpper()).Replace("{visualVehicleName}", info.visualName);
             #region save on modloader folder
-            File.WriteAllText($"{info.modFolder}\\name.fxd", templatefxd);
+            File.WriteAllText($"{info.modFolder}\\name.fxt", templatefxd);
             #endregion
             return true;
         }
