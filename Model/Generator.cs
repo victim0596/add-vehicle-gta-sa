@@ -10,6 +10,7 @@ namespace addVehicle.Model
     {
         public bool result { get; set; }
         public string line { get; set; }
+        public string fileAnalized { get; set; }
         public Generator() 
         {
             result = false;

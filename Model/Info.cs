@@ -17,9 +17,10 @@ namespace addVehicle.Model
         public VehicleInfo dffVehicle { get; set; }
         public string visualName { get; set; }
         public string idName { get; set; }
+        public string modLoaderFolder { get; set; }
+        public string modFolder { get; set; }
         #region private
         private string errorMessage { get; set; }
-        private string modLoaderFolder { get; set; }
         #endregion
 
         public Info() 

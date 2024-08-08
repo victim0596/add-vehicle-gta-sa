@@ -1,7 +1,7 @@
-﻿<Application x:Class="genConf.App"
+﻿<Application x:Class="addVehicle.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:genConf"
+             xmlns:local="clr-namespace:addVehicle"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          

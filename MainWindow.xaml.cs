@@ -1,4 +1,5 @@
-﻿using addVehicle.generatorLinee;
+﻿using addVehicle.generatorLine;
+using addVehicle.generatorLinee;
 using addVehicle.Model;
 using System;
 using System.Collections.Generic;
@@ -89,26 +90,14 @@ namespace addVehicle
         {
             if (info.checkField())
             {
-                mainGenerator gen = new mainGenerator();
+                MainGenerator gen = new MainGenerator();
                 List<Generator> genResult = await gen.start(info);
-                string caption = "";
-                string message = "";
-                if (!genResult.Any(x=>x.result == false)) {
-                    caption = "Done";
-                    message = "New Vehicle added!";
-                    MessageBoxButton button = MessageBoxButton.OK;
-                    MessageBoxImage icon = MessageBoxImage.Information;
-                    MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
-                } else
-                {
-                    caption = "Error";
-                    message = "Something goes wrong, check the log for more information!";
-                    MessageBoxButton button = MessageBoxButton.OK;
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
-                }
-
             }
+            /*Info infoGen = new Info();
+            infoGen.nameVehicleToCopy = "LANDSTAL";
+            infoGen.id = 580;
+            infoGen.idName = "test";
+            string check = GenLineLoader.genLinee("400,\tlandstal, \tlandstal, \tcar, \t\tLANDSTAL, \tLANDSTK, \tnull,\tnormal, \t10,\t0,\t0,\t\t-1, 0.768, 0.768,\t0\r\n", infoGen, "vehicles.ide");*/
         }
 
         public void onSelectComboVehicle(object sender, RoutedEventArgs e)
