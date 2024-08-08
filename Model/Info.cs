@@ -78,8 +78,9 @@ namespace addVehicle.Model
             //Check modloader folder exists
             modLoaderFolder = pathGta+"\\modloader";
             if (!Directory.Exists(modLoaderFolder)) errorMessage += "There isn't any modloader folder in this path.\n";
-            //check vehicleAudioSettings 
-            FileInfo[] vehicleAudioSettings = d.GetFiles("gtasa_vehicleAudioSettings.cfg");
+            //check vehicleAudioSettings
+            DirectoryInfo d2 = new DirectoryInfo($"{pathGta}\\data");
+            FileInfo[] vehicleAudioSettings = d2.GetFiles("gtasa_vehicleAudioSettings.cfg");
             if (vehicleAudioSettings.Length == 0) errorMessage += "There isn't any gtasa_vehicleAudioSettings.cfg in this folder.\n";
         }
         #endregion
