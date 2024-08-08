@@ -5,6 +5,17 @@
     <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="3.0.0-preview.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

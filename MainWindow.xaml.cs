@@ -1,8 +1,11 @@
 ﻿using addVehicle.generatorLine;
 using addVehicle.generatorLinee;
 using addVehicle.Model;
+using log4net;
+using log4net.Config;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,8 +28,11 @@ namespace addVehicle
     public partial class MainWindow : Window
     {
         public Info info = new Info();
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType); 
         public MainWindow()
         {
+            log4net.Config.XmlConfigurator.Configure();
+            log.Info("Start application.");
             InitializeComponent();
             loadComboItem();
         }
@@ -93,11 +99,6 @@ namespace addVehicle
                 MainGenerator gen = new MainGenerator();
                 List<Generator> genResult = await gen.start(info);
             }
-            /*Info infoGen = new Info();
-            infoGen.nameVehicleToCopy = "LANDSTAL";
-            infoGen.id = 580;
-            infoGen.idName = "test";
-            string check = GenLineLoader.genLinee("400,\tlandstal, \tlandstal, \tcar, \t\tLANDSTAL, \tLANDSTK, \tnull,\tnormal, \t10,\t0,\t0,\t\t-1, 0.768, 0.768,\t0\r\n", infoGen, "vehicles.ide");*/
         }
 
         public void onSelectComboVehicle(object sender, RoutedEventArgs e)
@@ -121,6 +122,10 @@ namespace addVehicle
         {
             string value = "";
             info.idName = textInputvehicleNameId.Text;
+        }
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            log.Info("Application closed.");
         }
     }
 }

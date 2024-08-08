@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace addVehicle.Model
         #region private
         private string errorMessage { get; set; }
         #endregion
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public Info() 
         { 
@@ -32,6 +34,7 @@ namespace addVehicle.Model
         public bool checkField()
         {
             errorMessage = "";
+            log.Info("Iniziata fase di controllo campi"); //todo
             checkInput();
             checkPathGta();
             checkVehicleFile();
@@ -41,47 +44,94 @@ namespace addVehicle.Model
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(errorMessage, caption, button, icon, MessageBoxResult.OK);
+                log.Info("Fine fase controllo campi"); //todo
                 return false;
             }
+            log.Info("Fine fase controllo campi"); //todo
             return true;
         }
         #region checkField 
         private void checkVehicleFile()
         {
-            if (string.IsNullOrEmpty(txdVehicle.path)) errorMessage += "There isn't any txd file loaded.\n";
-            if (string.IsNullOrEmpty(dffVehicle.path)) errorMessage += "There isn't any dff file loaded.\n";
+            if (string.IsNullOrEmpty(txdVehicle.path))
+            {
+                errorMessage += "There isn't any txd file loaded.\n";
+                log.Error("There isn't any txd file loaded.");
+            }
+            if (string.IsNullOrEmpty(dffVehicle.path))
+            {
+                errorMessage += "There isn't any dff file loaded.\n";
+                log.Error("There isn't any dff file loaded.");
+            }
             if(!string.IsNullOrEmpty(txdVehicle.path) && !string.IsNullOrEmpty(dffVehicle.path))
             {
-                if(txdVehicle.name != dffVehicle.name) errorMessage += "The name of txd and dff file are not the same.\n";
+                if (txdVehicle.name != dffVehicle.name)
+                {
+                    errorMessage += "The name of txd and dff file are not the same.\n";
+                    log.Error("The name of txd and dff file are not the same.");
+                }
             }
         }
 
         private void checkInput()
         {
-            if (id == 0) errorMessage+= "There isn't any valid number on id field.\n";
-            if (string.IsNullOrEmpty(visualName)) errorMessage += "There isn't any visual name.\n";
-            if (string.IsNullOrEmpty(idName)) errorMessage += "There isn't any id name.\n";
-            if (!string.IsNullOrEmpty(idName) && idName.Length > 7 ) errorMessage += "The id name is too long (max 7 char).\n";
-            if (string.IsNullOrEmpty(nameVehicleToCopy)) errorMessage += "There isn't vehicle to copy.\n";
+            if (id == 0)
+            {
+                errorMessage += "There isn't any valid number on id field.\n";
+                log.Error("There isn't any valid number on id field.");
+            }
+            if (string.IsNullOrEmpty(visualName))
+            {
+                errorMessage += "There isn't any visual name.\n";
+                log.Error("There isn't any visual name.");
+            }
+            if (string.IsNullOrEmpty(idName))
+            {
+                errorMessage += "There isn't any id name.\n";
+                log.Error("There isn't any id name.");
+            }
+            if (!string.IsNullOrEmpty(idName) && idName.Length > 7)
+            {
+                errorMessage += "The id name is too long (max 7 char).\n";
+                log.Error("The id name is too long (max 7 char).");
+            }
+            if (string.IsNullOrEmpty(nameVehicleToCopy))
+            {
+                errorMessage += "There isn't vehicle to copy.\n";
+                log.Error("There isn't vehicle to copy.");
+            }
         }
 
         private void checkPathGta()
         {
             if (string.IsNullOrEmpty(pathGta))
             {
-                errorMessage += "The path is empty.\n";
+                errorMessage += "The gta path is empty.\n";
+                log.Error("The gta path is empty.");
                 return;
             }
             DirectoryInfo d = new DirectoryInfo(pathGta);
             FileInfo[] gtaSaExe = d.GetFiles("gta_sa.exe");
-            if (gtaSaExe.Length == 0)  errorMessage += "There isn't any gta_sa.exe in this folder.\n";
+            if (gtaSaExe.Length == 0)
+            {
+                errorMessage += "There isn't any gta_sa.exe in this gta path.\n";
+                log.Error("There isn't any gta_sa.exe in this gta path.");
+            }
             //Check modloader folder exists
             modLoaderFolder = pathGta+"\\modloader";
-            if (!Directory.Exists(modLoaderFolder)) errorMessage += "There isn't any modloader folder in this path.\n";
+            if (!Directory.Exists(modLoaderFolder))
+            {
+                errorMessage += "There isn't any modloader folder in this gta path.\n";
+                log.Error("There isn't any modloader folder in this gta path.");
+            }
             //check vehicleAudioSettings
             DirectoryInfo d2 = new DirectoryInfo($"{pathGta}\\data");
             FileInfo[] vehicleAudioSettings = d2.GetFiles("gtasa_vehicleAudioSettings.cfg");
-            if (vehicleAudioSettings.Length == 0) errorMessage += "There isn't any gtasa_vehicleAudioSettings.cfg in this folder.\n";
+            if (vehicleAudioSettings.Length == 0)
+            {
+                errorMessage += "There isn't any gtasa_vehicleAudioSettings.cfg in data folder.\n";
+                log.Error("There isn't any gtasa_vehicleAudioSettings.cfg in data folder.");
+            }
         }
         #endregion
 

@@ -1,4 +1,5 @@
 ﻿using addVehicle.Model;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,13 +12,29 @@ namespace addVehicle.generatorLine
 {
     public class SaveFile
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public bool save(IList<Generator> listGenerator, Generator audioSettings, Info info)
         {
+            log.Info("Starting save phase.");
             //create dir for mod
             info.modFolder = $"{info.modLoaderFolder}\\{info.visualName}";
             if (!Directory.Exists(info.modFolder))
             {
-                Directory.CreateDirectory(info.modFolder);
+                try
+                {
+                    Directory.CreateDirectory(info.modFolder);
+                    log.Info("Mod directory created successfully");
+                }
+                catch (Exception ex) 
+                {
+                    log.Error(ex.Message);
+                    return false;
+                }
+            }
+            else
+            {
+                log.Error($"Already exist a directory with this name {info.modFolder}");
+                return false;
             }
             //loader.txt
             MergeLine mergeLine = new MergeLine();
@@ -31,7 +48,8 @@ namespace addVehicle.generatorLine
             //vehicleAudioSettings
             GenVehicleAudio genVehicleAudio = new GenVehicleAudio();
             bool checkVehicleAudio = genVehicleAudio.genAndSave(info, audioSettings);
-            return true;
+
+            return checkMergeAndSave && checkGenFxt && checkModFile && checkVehicleAudio;
         }
     }
 }

@@ -7,22 +7,23 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
 using addVehicle.generatorLine;
+using log4net;
 
 namespace addVehicle.generatorLinee
 {
     public class MainGenerator
     {
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public async Task<List<Generator>> start(Info info) 
         {
+            log.Info("Started generation of configuration file for vehicle.");
             List<Generator> list = new List<Generator>();
             Generator checkGenHandling = await gen(info, "handling.cfg", false, true);
             list.Add(checkGenHandling);
 
             Generator checkgenCarcols = await gen(info, "carcols.dat", true, true);
             list.Add(checkgenCarcols);
-
-            /*Generator checkgenCargrp = await gen(info, "cargrp.dat", true, true);
-            list.Add(checkgenCargrp);*/
 
             Generator checkgenCarMods = await gen(info, "carmods.dat", true, true);
             list.Add(checkgenCarMods);
@@ -35,7 +36,7 @@ namespace addVehicle.generatorLinee
             SaveFile save = new SaveFile();
             bool saveCheck = save.save(list, audioSettings, info);
             
-            checkGenerator(list); //todo
+            checkGenerator(list, saveCheck); //todo
 
             return list;
         }
@@ -44,26 +45,41 @@ namespace addVehicle.generatorLinee
         {
             string path = isOnData ? $"{info.pathGta}\\data\\{file}" : $"{info.pathGta}\\{file}";
             Generator generator = new Generator { fileAnalized = file };
-            var lines = File.ReadAllLines(path).ToArray();
-            for (var i = 0; i < lines.Length; i += 1)
+            log.Info($"Starting reading {file}.");
+            try
             {
-                var line = lines[i];
-                if (line.Contains(isLower ? info.nameVehicleToCopy.ToLower() : info.nameVehicleToCopy))
+                var lines = File.ReadAllLines(path).ToArray();
+                for (var i = 0; i < lines.Length; i += 1)
                 {
-                    generator.line = GenLineLoader.genLinee(line, info, file);
-                    generator.result = true;
-                    break;
+                    var line = lines[i];
+                    if (line.Contains(isLower ? info.nameVehicleToCopy.ToLower() : info.nameVehicleToCopy))
+                    {
+                        generator.line = GenLineLoader.genLinee(line, info, file);
+                        generator.result = true;
+                        break;
+                    }
+                }
+                if (string.IsNullOrEmpty(generator.line))
+                {
+                    generator.result = false;
+                    log.Error($"Nessuna linea trovata per {info.nameVehicleToCopy} nel file {file}.");//todo
                 }
             }
+            catch (Exception e) 
+            {
+                generator.result = false;
+                log.Error(e.Message);
+            }
+            log.Info($"Finish generated linee of {file}.");
             return Task.FromResult(generator);
         }
 
-        public void checkGenerator(List<Generator> listGenerator)
+        public void checkGenerator(List<Generator> listGenerator, bool saveCheck)
         {
             string caption = "";
             string message = "";
             IList<string> notMandatory = new List<string> { "cargrp.dat", "carmods.dat" };
-            if (!listGenerator.Where(x=> !notMandatory.Contains(x.fileAnalized)).Any(x => x.result == false))
+            if (!listGenerator.Where(x=> !notMandatory.Contains(x.fileAnalized)).Any(x => x.result == false) && saveCheck)
             {
                 caption = "Done";
                 message = "New Vehicle added!";
