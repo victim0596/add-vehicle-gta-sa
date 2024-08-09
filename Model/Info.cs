@@ -34,7 +34,7 @@ namespace addVehicle.Model
         public bool checkField()
         {
             errorMessage = "";
-            log.Info("Iniziata fase di controllo campi"); //todo
+            log.Info("Start field control phase");
             checkInput();
             checkPathGta();
             checkVehicleFile();
@@ -44,10 +44,10 @@ namespace addVehicle.Model
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(errorMessage, caption, button, icon, MessageBoxResult.OK);
-                log.Info("Fine fase controllo campi"); //todo
+                log.Info("End of field control phase");
                 return false;
             }
-            log.Info("Fine fase controllo campi"); //todo
+            log.Info("End of field control phase"); 
             return true;
         }
         #region checkField 

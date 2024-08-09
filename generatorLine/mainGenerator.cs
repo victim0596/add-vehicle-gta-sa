@@ -36,7 +36,7 @@ namespace addVehicle.generatorLinee
             SaveFile save = new SaveFile();
             bool saveCheck = save.save(list, audioSettings, info);
             log.Info("Finished generation of configuration file for vehicle.");
-            checkGenerator(list, saveCheck); //todo
+            checkGenerator(list, saveCheck);
             return list;
         }
 
@@ -55,13 +55,14 @@ namespace addVehicle.generatorLinee
                     {
                         generator.line = GenLineLoader.genLinee(line, info, file);
                         generator.result = true;
+                        log.Info($"Linee found for {info.nameVehicleToCopy} in {file}. \nDetail\n {generator.line}");
                         break;
                     }
                 }
                 if (string.IsNullOrEmpty(generator.line))
                 {
                     generator.result = false;
-                    log.Error($"Nessuna linea trovata per {info.nameVehicleToCopy} nel file {file}.");//todo
+                    log.Error($"No lines found for {info.nameVehicleToCopy} in file {file}.");
                 }
             }
             catch (Exception e) 
@@ -77,7 +78,7 @@ namespace addVehicle.generatorLinee
         {
             string caption = "";
             string message = "";
-            IList<string> notMandatory = new List<string> { "cargrp.dat", "carmods.dat" };
+            IList<string> notMandatory = new List<string> { "carmods.dat" };
             if (!listGenerator.Where(x=> !notMandatory.Contains(x.fileAnalized)).Any(x => x.result == false) && saveCheck)
             {
                 caption = "Done";
