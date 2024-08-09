@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:addVehicle"
         mc:Ignorable="d"
         Title="GTA SA New Vehicle" Height="450" Width="600" Background="Black"
-        ResizeMode="NoResize" Closing="Window_Closing"
+        Closing="Window_Closing" ResizeMode="CanMinimize"
         >
     <Grid>
         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="0 10 0 10" VerticalAlignment="Center">
