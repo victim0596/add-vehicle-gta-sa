@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:addVehicle"
+        xmlns:local="clr-namespace:addVehicle" 
         mc:Ignorable="d"
         Title="GTA SA New Vehicle" Height="450" Width="600" Background="Black"
         Closing="Window_Closing" ResizeMode="CanMinimize"
@@ -52,6 +52,21 @@
                  Height="20"        
                  Width="150"
                  SelectionChanged="onSelectComboVehicle"
+                 Grid.Column="1"
+                 HorizontalAlignment="Right"/>
+            </Grid>
+            <Grid x:Name="gridTypeVehicleSelection" Margin="0 0 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition SharedSizeGroup="SecondColumn"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="LabelTypeVehicleCopy"        
+               Content="Type of Vehicle:"     
+               Margin="0 0 20 0" Foreground="White"/>
+                <ComboBox x:Name="comboTypeVehicle"      
+                 Height="20"        
+                 Width="150"
+                 SelectionChanged="onSelectComboTypeVehicle"
                  Grid.Column="1"
                  HorizontalAlignment="Right"/>
             </Grid>

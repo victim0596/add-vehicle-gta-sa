@@ -41,6 +41,7 @@ namespace addVehicle
         public void loadComboItem()
         {
             comboVehicle.ItemsSource = Constant._vehicleList;
+            comboTypeVehicle.ItemsSource = Constant._typeVehicleList;
         }
         public void loadDefaultConfig()
         {
@@ -106,6 +107,15 @@ namespace addVehicle
 
         public async void generateConfig(object sender, RoutedEventArgs e)
         {
+            IList<string> specialVehicle = new List<string> { "ZR350", "HYDRA" };
+            if (specialVehicle.Contains(info.nameVehicleToCopy))
+            {
+                var caption = "Information";
+                var message = "You choose a special vehicle, keep in mind to add a new linee of this vehicle in fastman92limitAdjuster_GTASA.ini";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
+            }
             if (info.checkField())
             {
                 MainGenerator gen = new MainGenerator();
@@ -116,6 +126,10 @@ namespace addVehicle
         public void onSelectComboVehicle(object sender, RoutedEventArgs e)
         {
             info.nameVehicleToCopy = comboVehicle.SelectedItem.ToString();
+        }
+        public void onSelectComboTypeVehicle(object sender, RoutedEventArgs e)
+        {
+            info.nameTypeVehicleToCopy = comboTypeVehicle.SelectedItem.ToString();
         }
 
         public void setId(object sender, RoutedEventArgs e)
