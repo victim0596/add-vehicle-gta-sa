@@ -113,7 +113,7 @@ namespace addVehicle
                 var caption = "Information";
                 var message = "You choose a special vehicle, keep in mind to add a new linee of this vehicle in fastman92limitAdjuster_GTASA.ini";
                 MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBoxImage icon = MessageBoxImage.Warning;
                 MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
             }
             if (info.checkField())

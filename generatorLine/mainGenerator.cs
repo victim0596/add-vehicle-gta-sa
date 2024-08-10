@@ -15,7 +15,7 @@ namespace addVehicle.generatorLinee
     public class MainGenerator
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private IList<string> _listOfTwoLineeHandling = new List<string>{ Constant._typeAero, Constant._typeBike };
+        private IList<string> _listOfTwoLineeHandling = new List<string>{ Constant._typeAero, Constant._typeBike, Constant._typeBoat };
 
         public async Task<List<Generator>> start(Info info) 
         {
@@ -59,27 +59,31 @@ namespace addVehicle.generatorLinee
             try
             {
                 var lines = File.ReadAllLines(path).ToArray();
+                var tempLinee = "";
+                int countLinee = 0;
                 for (var i = 0; i < lines.Length; i += 1)
                 {
                     var line = lines[i];
-                    var tempLinee = "";
                     if (line.Contains(isLower ? info.nameVehicleToCopy.ToLower() : info.nameVehicleToCopy))
                     {
                         if (_listOfTwoLineeHandling.Contains(info.nameTypeVehicleToCopy) && file == "handling.cfg")
                         {
-                            tempLinee += line;
-                            if(tempLinee.Split('\n').Length == 2)
+                            tempLinee += line+"\n";
+                            countLinee++;
+                            if(countLinee == 2)
                             {
-                                generator.line = GenLineLoader.genLinee(line, info, file);
+                                generator.line = GenLineLoader.genLinee(tempLinee, info, file);
                                 generator.result = true;
                                 log.Info($"Linee found for {info.nameVehicleToCopy} in {file}. \nDetail\n {generator.line}");
                                 break;
                             }
+                        }else
+                        {
+                            generator.line = GenLineLoader.genLinee(line, info, file);
+                            generator.result = true;
+                            log.Info($"Linee found for {info.nameVehicleToCopy} in {file}. \nDetail\n {generator.line}");
+                            break;
                         }
-                        generator.line = GenLineLoader.genLinee(line, info, file);
-                        generator.result = true;
-                        log.Info($"Linee found for {info.nameVehicleToCopy} in {file}. \nDetail\n {generator.line}");
-                        break;
                     }
                 }
                 if (string.IsNullOrEmpty(generator.line))

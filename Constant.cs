@@ -40,7 +40,7 @@ namespace addVehicle
         public static string _typeCar = "Car";
         public static string _typeBike = "Bike/Motorcycle";
         public static string _typeAero = "Aeroplane";
-        public static string _Boat = "Boat";
+        public static string _typeBoat = "Boat";
 
     }
 }
