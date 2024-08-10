@@ -36,6 +36,7 @@ namespace addVehicle
             InitializeComponent();
             loadComboItem();
             loadDefaultConfig();
+            informationPanel();
         }
 
         public void loadComboItem()
@@ -52,6 +53,29 @@ namespace addVehicle
                 ButtonDirectory.Background = new SolidColorBrush(Colors.Green);
                 ButtonDirectory.Content = dirGta;
                 info.pathGta = dirGta;
+            }
+        }
+
+        public void informationPanel()
+        {
+            string infoShow = System.Configuration.ConfigurationManager.AppSettings["infoPanelShow"];
+            bool infoBool = false;
+            bool Checkinfo = bool.TryParse(infoShow, out infoBool);
+            if (!Checkinfo) 
+            {
+                var caption = "Error";
+                var message = "infoPanelShow invalid value in app.config";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
+            }
+            if (infoBool)
+            {
+                var caption = "Information";
+                var message = "Remember first to edit fastman92limitAdjuster_GTASA.ini properly. Please, read the info.md.";
+                MessageBoxButton button = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Information;
+                MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
             }
         }
 
@@ -111,7 +135,7 @@ namespace addVehicle
             if (specialVehicle.Contains(info.nameVehicleToCopy))
             {
                 var caption = "Information";
-                var message = "You choose a special vehicle, keep in mind to add a new linee of this vehicle in fastman92limitAdjuster_GTASA.ini";
+                var message = $"You are choosing a special vehicle. Add another line for {info.nameVehicleToCopy} in fastman92limitAdjuster_GTASA.ini with its ID number {info.id}.";
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Warning;
                 MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
