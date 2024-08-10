@@ -35,7 +35,7 @@ namespace addVehicle.Model
         public bool checkField()
         {
             errorMessage = "";
-            log.Info("Start field control phase");
+            log.Info("Control field phase started.");
             checkInput();
             checkPathGta();
             checkVehicleFile();
@@ -45,10 +45,10 @@ namespace addVehicle.Model
                 MessageBoxButton button = MessageBoxButton.OK;
                 MessageBoxImage icon = MessageBoxImage.Error;
                 MessageBox.Show(errorMessage, caption, button, icon, MessageBoxResult.OK);
-                log.Info("End of field control phase");
+                log.Info("Control field phase finished.");
                 return false;
             }
-            log.Info("End of field control phase"); 
+            log.Info("Control field phase finished.");
             return true;
         }
         #region checkField 
@@ -56,20 +56,20 @@ namespace addVehicle.Model
         {
             if (string.IsNullOrEmpty(txdVehicle.path))
             {
-                errorMessage += "There isn't any txd file loaded.\n";
-                log.Error("There isn't any txd file loaded.");
+                errorMessage += "No txd file uploaded.\n";
+                log.Error("No txd file uploaded.");
             }
             if (string.IsNullOrEmpty(dffVehicle.path))
             {
-                errorMessage += "There isn't any dff file loaded.\n";
-                log.Error("There isn't any dff file loaded.");
+                errorMessage += "No dff file uploaded.\n";
+                log.Error("No dff file uploaded.");
             }
             if(!string.IsNullOrEmpty(txdVehicle.path) && !string.IsNullOrEmpty(dffVehicle.path))
             {
                 if (txdVehicle.name != dffVehicle.name)
                 {
-                    errorMessage += "The name of txd and dff file are not the same.\n";
-                    log.Error("The name of txd and dff file are not the same.");
+                    errorMessage += "Txd and dff files must have the same name.\n";
+                    log.Error("Txd and dff files must have the same name.");
                 }
             }
         }
@@ -78,33 +78,33 @@ namespace addVehicle.Model
         {
             if (id == 0)
             {
-                errorMessage += "There isn't any valid number on id field.\n";
-                log.Error("There isn't any valid number on id field.");
+                errorMessage += "No valid number in ID field.\n";
+                log.Error("No valid number in ID field.");
             }
             if (string.IsNullOrEmpty(visualName))
             {
-                errorMessage += "There isn't any visual name.\n";
-                log.Error("There isn't any visual name.");
+                errorMessage += "Empty visual name.\n";
+                log.Error("Empty visual name.");
             }
             if (string.IsNullOrEmpty(idName))
             {
-                errorMessage += "There isn't any id name.\n";
-                log.Error("There isn't any id name.");
+                errorMessage += "Empty ID name.\n";
+                log.Error("Empty ID name.");
             }
-            if (!string.IsNullOrEmpty(idName) && idName.Length > 7)
+            if (idName.Length > 7)
             {
-                errorMessage += "The id name is too long (max 7 char).\n";
-                log.Error("The id name is too long (max 7 char).");
+                errorMessage += "ID name must have maximum 7 characters.\n";
+                log.Error($"ID name must have maximum 7 characters {idName}.");
             }
             if (string.IsNullOrEmpty(nameVehicleToCopy))
             {
-                errorMessage += "There isn't vehicle to copy.\n";
-                log.Error("There isn't vehicle to copy.");
+                errorMessage += "No vehicle found. Choose another reference.\n";
+                log.Error("No vehicle found. Choose another reference.");
             }
             if(string.IsNullOrEmpty(nameTypeVehicleToCopy))
             {
-                errorMessage += "There isn't any type of vehicle.\n";
-                log.Error("There isn't any type of vehicle.");
+                errorMessage += "No type vehicle found. Choose another option.\n";
+                log.Error("No type vehicle found. Choose another option.");
             }
         }
 
@@ -112,37 +112,37 @@ namespace addVehicle.Model
         {
             if (string.IsNullOrEmpty(pathGta))
             {
-                errorMessage += "The gta path is empty.\n";
-                log.Error("The gta path is empty.");
+                errorMessage += "Empty GTA SA Directory.\n";
+                log.Error("Empty GTA SA Directory.");
                 return;
             }
             DirectoryInfo d = new DirectoryInfo(pathGta);
             FileInfo[] gtaSaExe = d.GetFiles("gta_sa.exe");
             if (gtaSaExe.Length == 0)
             {
-                errorMessage += "There isn't any gta_sa.exe in this gta path.\n";
-                log.Error("There isn't any gta_sa.exe in this gta path.");
+                errorMessage += "No gta_sa.exe found in GTA SA Directory.\n";
+                log.Error("No gta_sa.exe found in GTA SA Directory.");
             }
             //Check modloader folder exists
             modLoaderFolder = pathGta+"\\modloader";
             if (!Directory.Exists(modLoaderFolder))
             {
-                errorMessage += "There isn't any modloader folder in this gta path.\n";
-                log.Error("There isn't any modloader folder in this gta path.");
+                errorMessage += "No modloader folder found in GTA SA Directory.\n";
+                log.Error("No modloader folder found in GTA SA Directory.");
             }
             //check vehicleAudioSettings
             DirectoryInfo d2 = new DirectoryInfo($"{pathGta}\\data");
             FileInfo[] vehicleAudioSettings = d2.GetFiles("gtasa_vehicleAudioSettings.cfg");
             if (vehicleAudioSettings.Length == 0)
             {
-                errorMessage += "There isn't any gtasa_vehicleAudioSettings.cfg in data folder.\n";
-                log.Error("There isn't any gtasa_vehicleAudioSettings.cfg in data folder.");
+                errorMessage += "No gtasa_vehicleAudioSettings.cfg found in GTA SA Directory data folder.\n";
+                log.Error("No gtasa_vehicleAudioSettings.cfg found in GTA SA Directory data folder.");
             }//model_special_features.dat
             FileInfo[] modelSpecialFeatureSetting = d2.GetFiles("model_special_features.dat");
             if (modelSpecialFeatureSetting.Length == 0)
             {
-                errorMessage += "There isn't any model_special_features.dat in data folder.\n";
-                log.Error("There isn't any model_special_features.dat in data folder.");
+                errorMessage += "No model_special_features.dat found in GTA SA Directory data folder.\n";
+                log.Error("No model_special_features.dat found in GTA SA Directory data folder.");
             }
         }
         #endregion
