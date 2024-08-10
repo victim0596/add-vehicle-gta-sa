@@ -35,11 +35,23 @@ namespace addVehicle
             log.Info("Start application.");
             InitializeComponent();
             loadComboItem();
+            loadDefaultConfig();
         }
 
         public void loadComboItem()
         {
             comboVehicle.ItemsSource = Constant._vehicleList;
+        }
+        public void loadDefaultConfig()
+        {
+            string dirGta = System.Configuration.ConfigurationManager.AppSettings["dirGta"];
+            if (!string.IsNullOrEmpty(dirGta))
+            {
+                ButtonDirectory.Foreground = new SolidColorBrush(Colors.White);
+                ButtonDirectory.Background = new SolidColorBrush(Colors.Green);
+                ButtonDirectory.Content = dirGta;
+                info.pathGta = dirGta;
+            }
         }
 
         public void openFolder(object sender, RoutedEventArgs e)
