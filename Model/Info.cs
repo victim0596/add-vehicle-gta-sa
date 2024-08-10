@@ -13,6 +13,7 @@ namespace addVehicle.Model
     {
         public string pathGta { get; set; }
         public string nameVehicleToCopy { get; set; }
+        public string nameTypeVehicleToCopy { get; set; }
         public int id { get; set; }
         public VehicleInfo txdVehicle { get; set; }
         public VehicleInfo dffVehicle { get; set; }
@@ -100,6 +101,11 @@ namespace addVehicle.Model
                 errorMessage += "There isn't vehicle to copy.\n";
                 log.Error("There isn't vehicle to copy.");
             }
+            if(string.IsNullOrEmpty(nameTypeVehicleToCopy))
+            {
+                errorMessage += "There isn't any type of vehicle.\n";
+                log.Error("There isn't any type of vehicle.");
+            }
         }
 
         private void checkPathGta()
@@ -131,6 +137,12 @@ namespace addVehicle.Model
             {
                 errorMessage += "There isn't any gtasa_vehicleAudioSettings.cfg in data folder.\n";
                 log.Error("There isn't any gtasa_vehicleAudioSettings.cfg in data folder.");
+            }//model_special_features.dat
+            FileInfo[] modelSpecialFeatureSetting = d2.GetFiles("model_special_features.dat");
+            if (modelSpecialFeatureSetting.Length == 0)
+            {
+                errorMessage += "There isn't any model_special_features.dat in data folder.\n";
+                log.Error("There isn't any model_special_features.dat in data folder.");
             }
         }
         #endregion
