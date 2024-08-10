@@ -13,7 +13,7 @@ namespace addVehicle.generatorLine
     public class SaveFile
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        public bool save(IList<Generator> listGenerator, Generator audioSettings, Info info)
+        public bool save(IList<Generator> listGenerator, IList<Generator> listLimitAdjusterGenerator, Info info)
         {
             log.Info("Starting save phase.");
             //create dir for mod
@@ -46,8 +46,16 @@ namespace addVehicle.generatorLine
             GenModFile genModFile = new GenModFile();
             bool checkModFile = genModFile.genAndSave(info);
             //vehicleAudioSettings
-            GenVehicleAudio genVehicleAudio = new GenVehicleAudio();
-            bool checkVehicleAudio = genVehicleAudio.genAndSave(info, audioSettings);
+            GenLineeOnLimitAdjuster genVehicleAudio = new GenLineeOnLimitAdjuster();
+            bool checkVehicleAudio = genVehicleAudio.genAndSave(info, listLimitAdjusterGenerator.Where(x=>x.fileAnalized == "gtasa_vehicleAudioSettings.cfg").First(), "gtasa_vehicleAudioSettings.cfg");
+            if (info.nameTypeVehicleToCopy == Constant._typeAero)
+            {
+                //modelspecialfeature
+                GenLineeOnLimitAdjuster genSpecialFeature = new GenLineeOnLimitAdjuster();
+                bool checkGenSpecialFeature = genSpecialFeature.genAndSave(info, listLimitAdjusterGenerator.Where(x => x.fileAnalized == "model_special_features.dat").First(), "model_special_features.dat");
+                return checkMergeAndSave && checkGenFxt && checkModFile && checkVehicleAudio && checkGenSpecialFeature;
+            }
+
             return checkMergeAndSave && checkGenFxt && checkModFile && checkVehicleAudio;
         }
     }
