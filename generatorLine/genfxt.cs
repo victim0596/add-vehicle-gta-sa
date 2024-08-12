@@ -15,17 +15,17 @@ namespace addVehicle.generatorLine
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public bool genAndSave(Info info)
         {
-            log.Info("Starting generation of name.fxt");
+            log.Info($"Starting generation of {info.idName.ToLower()}.fxt");
             string templatefxd = template.templateFxd.Replace("{vehicleNameId}", info.idName.ToUpper()).Replace("{visualVehicleName}", info.visualName);
             #region save on modloader folder
             try
             {
-                File.WriteAllText($"{info.modFolder}\\{info.idName}.fxt", templatefxd);
+                File.WriteAllText($"{info.modFolder}\\{info.idName.ToLower()}.fxt", templatefxd);
                 log.Info("name.fxt file generated successfully.");
             }
             catch (Exception ex) 
             {
-                log.Error($"Error on saving {info.idName}.fxt. Error:{ex.Message}");
+                log.Error($"Error on saving {info.idName.ToLower()}.fxt. Error:{ex.Message}");
                 return false;
             }
             #endregion
