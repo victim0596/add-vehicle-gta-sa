@@ -20,12 +20,12 @@ namespace addVehicle.generatorLine
             #region save on modloader folder
             try
             {
-                File.WriteAllText($"{info.modFolder}\\name.fxt", templatefxd);
+                File.WriteAllText($"{info.modFolder}\\{info.idName}.fxt", templatefxd);
                 log.Info("name.fxt file generated successfully.");
             }
             catch (Exception ex) 
             {
-                log.Error($"Error on saving name.fxt. Error:{ex.Message}");
+                log.Error($"Error on saving {info.idName}.fxt. Error:{ex.Message}");
                 return false;
             }
             #endregion
