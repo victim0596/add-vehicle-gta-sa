@@ -1,5 +1,6 @@
 ﻿using addVehicle.generatorLine;
-using addVehicle.generatorLinee;
+using addVehicle.generatorLine.Concrete;
+using addVehicle.generatorLine.Contract;
 using addVehicle.Model;
 using log4net;
 using log4net.Config;
@@ -28,8 +29,9 @@ namespace addVehicle
     public partial class MainWindow : Window
     {
         public Info info = new Info();
-        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType); 
-        public MainWindow()
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private readonly IMainGenerator _mainGenerator;
+        public MainWindow(IMainGenerator mainGenerator)
         {
             log4net.Config.XmlConfigurator.Configure();
             log.Info("Start application.");
@@ -37,6 +39,7 @@ namespace addVehicle
             loadComboItem();
             loadDefaultConfig();
             informationPanel();
+            _mainGenerator = mainGenerator;
         }
 
         public void loadComboItem()
@@ -142,8 +145,7 @@ namespace addVehicle
             }
             if (info.checkField())
             {
-                MainGenerator gen = new MainGenerator();
-                List<Generator> genResult = await gen.start(info);
+                List<Generator> genResult = await _mainGenerator.start(info);
             }
         }
 

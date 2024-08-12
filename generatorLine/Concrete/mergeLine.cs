@@ -1,4 +1,5 @@
 ﻿using addVehicle.Const;
+using addVehicle.generatorLine.Contract;
 using addVehicle.Model;
 using log4net;
 using System;
@@ -9,17 +10,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Shapes;
 
-namespace addVehicle.generatorLine
+namespace addVehicle.generatorLine.Concrete
 {
-    public class MergeLine
+    public class MergeLine : IMergeLine
     {
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public bool mergeAndSave(IList<Generator> listGenerator, Info info)
+        public async Task<bool> mergeAndSave(IList<Generator> listGenerator, Info info)
         {
             log.Info("Started generation of loader.txt file");
             string templateLoader = template.templateLoader;
-            foreach (Generator generator in listGenerator) 
+            foreach (Generator generator in listGenerator)
             {
                 string toReplace = "{" + generator.fileAnalized + "}";
                 templateLoader = templateLoader.Replace(toReplace, generator.line);
@@ -29,16 +30,16 @@ namespace addVehicle.generatorLine
             log.Info("Starting saving content of loader.txt in that file");
             try
             {
-                File.WriteAllText($"{info.modFolder}\\loader.txt", templateLoader);
+                await File.WriteAllTextAsync($"{info.modFolder}\\loader.txt", templateLoader);
                 log.Info("loader.txt file generated successfully.");
+                return true;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 log.Error($"Error on saving loader.txt. Error:{ex.Message}");
                 return false;
             }
             #endregion
-            return true;
         }
     }
 }

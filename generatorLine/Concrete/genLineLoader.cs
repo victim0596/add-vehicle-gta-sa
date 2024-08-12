@@ -1,18 +1,19 @@
-﻿using addVehicle.Model;
+﻿using addVehicle.generatorLine.Contract;
+using addVehicle.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace addVehicle.generatorLine
+namespace addVehicle.generatorLine.Concrete
 {
-    public static class GenLineLoader
+    public class GenLineLoader : IGenLineLoader
     {
-        public static string genLinee(string linee, Info info, string fileAnalized)
+        public string genLinee(string linee, Info info, string fileAnalized)
         {
             string lineeToReturn = linee;
-            switch (fileAnalized) 
+            switch (fileAnalized)
             {
                 case "handling.cfg":
                     {
