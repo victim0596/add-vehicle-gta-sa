@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace addVehicle.Model
 {
@@ -90,6 +91,11 @@ namespace addVehicle.Model
             {
                 errorMessage += "Empty ID name.\n";
                 log.Error("Empty ID name.");
+            }
+            if(idName.Any(x => Char.IsWhiteSpace(x)))
+            {
+                errorMessage += "Empty spaces in ID name.\n";
+                log.Error("Empty spaces in ID name.");
             }
             if (idName.Length > 7)
             {
