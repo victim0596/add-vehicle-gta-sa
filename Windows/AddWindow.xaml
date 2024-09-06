@@ -1,13 +1,12 @@
-﻿<Window x:Class="addVehicle.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:addVehicle" 
-        mc:Ignorable="d"
-        Title="GTA SA New Vehicle" Height="450" Width="600" Background="Black"
-        Closing="Window_Closing" ResizeMode="CanMinimize"
-        >
+﻿<Page x:Class="addVehicle.AddWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AddWindow">
+
     <Grid>
         <StackPanel HorizontalAlignment="Center" Orientation="Vertical" Margin="0 10 0 10" VerticalAlignment="Center">
             <Grid Margin="0 0 0 10">
@@ -16,8 +15,8 @@
                     <ColumnDefinition SharedSizeGroup="SecondColumn"/>
                 </Grid.ColumnDefinitions>
                 <Label     
-               Content="GTA SA Directory:"     
-               Margin="0 0 20 0" Foreground="White"/>
+           Content="GTA SA Directory:"     
+           Margin="0 0 20 0" Foreground="White"/>
                 <Button Grid.Column="1" x:Name="ButtonDirectory" Click="openFolder" Padding="5 5 5 5">Select Directory</Button>
             </Grid>
             <Grid Margin="0 0 0 10">
@@ -26,8 +25,8 @@
                     <ColumnDefinition SharedSizeGroup="SecondColumn"/>
                 </Grid.ColumnDefinitions>
                 <Label     
-               Content="Vehicle Dff:"     
-               Margin="0 0 20 0" Foreground="White"/>
+           Content="Vehicle Dff:"     
+           Margin="0 0 20 0" Foreground="White"/>
                 <Button Grid.Column="1" x:Name="dffVehicle" Click="onDffVehicle" Padding="5 5 5 5">Select File</Button>
             </Grid>
             <Grid Margin="0 0 0 10">
@@ -36,8 +35,8 @@
                     <ColumnDefinition SharedSizeGroup="SecondColumn"/>
                 </Grid.ColumnDefinitions>
                 <Label     
-               Content="Vehicle Txd:"     
-               Margin="0 0 20 0" Foreground="White"/>
+           Content="Vehicle Txd:"     
+           Margin="0 0 20 0" Foreground="White"/>
                 <Button Grid.Column="1" x:Name="txdVehicle" Click="onTxdVehicle" Padding="5 5 5 5">Select File</Button>
             </Grid>
             <Grid x:Name="gridTypeVehicleSelection" Margin="0 0 0 10">
@@ -46,14 +45,14 @@
                     <ColumnDefinition SharedSizeGroup="SecondColumn"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="LabelTypeVehicleCopy"        
-               Content="Vehicle Type:"     
-               Margin="0 0 20 0" Foreground="White"/>
+           Content="Vehicle Type:"     
+           Margin="0 0 20 0" Foreground="White"/>
                 <ComboBox x:Name="comboTypeVehicle"      
-                 Height="20"        
-                 Width="150"
-                 SelectionChanged="onSelectComboTypeVehicle"
-                 Grid.Column="1"
-                 HorizontalAlignment="Right"/>
+             Height="20"        
+             Width="150"
+             SelectionChanged="onSelectComboTypeVehicle"
+             Grid.Column="1"
+             HorizontalAlignment="Right"/>
             </Grid>
 
             <Grid x:Name="gridVehicleSelection" Margin="0 0 0 10">
@@ -62,14 +61,14 @@
                     <ColumnDefinition SharedSizeGroup="SecondColumn"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="LabelVehicleCopy"        
-               Content="Vehicle reference:"     
-               Margin="0 0 20 0" Foreground="White"/>
+           Content="Vehicle reference:"     
+           Margin="0 0 20 0" Foreground="White"/>
                 <ComboBox x:Name="comboVehicle"      
-                 Height="20"        
-                 Width="150"
-                 SelectionChanged="onSelectComboVehicle"
-                 Grid.Column="1"
-                 HorizontalAlignment="Right"/>
+             Height="20"        
+             Width="150"
+             SelectionChanged="onSelectComboVehicle"
+             Grid.Column="1"
+             HorizontalAlignment="Right"/>
             </Grid>
             <Grid x:Name="idVehicle" Margin="0 0 0 10">
                 <Grid.ColumnDefinitions>
@@ -77,12 +76,12 @@
                     <ColumnDefinition SharedSizeGroup="SecondColumn"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="labelIdVehicle"        
-               Content="New vehicle ID number:"     
-               Margin="0 0 20 0" Foreground="White"/>
+           Content="New vehicle ID number:"     
+           Margin="0 0 20 0" Foreground="White"/>
                 <TextBox x:Name="textInputId"      
-                 Height="20"        
-                 Width="150"
-                 Grid.Column="1" Background="White" TextChanged="setId" Foreground="Black" HorizontalAlignment="Right"/>
+             Height="20"        
+             Width="150"
+             Grid.Column="1" Background="White" TextChanged="setId" Foreground="Black" HorizontalAlignment="Right"/>
             </Grid>
             <Grid x:Name="vehicleNameId" Margin="0 0 0 10">
                 <Grid.ColumnDefinitions>
@@ -90,12 +89,12 @@
                     <ColumnDefinition SharedSizeGroup="SecondColumn"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="labelvehicleNameId"        
-                   Content="New vehicle ID name:"     
-                   Margin="0 0 20 0" Foreground="White"/>
+               Content="New vehicle ID name:"     
+               Margin="0 0 20 0" Foreground="White"/>
                 <TextBox x:Name="textInputvehicleNameId"      
-                     Height="20"        
-                     Width="150"
-                     Grid.Column="1" Background="White" TextChanged="setVehicleNameId" Foreground="Black" HorizontalAlignment="Right"/>
+                 Height="20"        
+                 Width="150"
+                 Grid.Column="1" Background="White" TextChanged="setVehicleNameId" Foreground="Black" HorizontalAlignment="Right"/>
             </Grid>
             <Grid x:Name="visualName" Margin="0 0 0 10">
                 <Grid.ColumnDefinitions>
@@ -103,14 +102,14 @@
                     <ColumnDefinition SharedSizeGroup="SecondColumn"/>
                 </Grid.ColumnDefinitions>
                 <Label x:Name="labelVisualName"        
-               Content="New vehicle visual name:"     
-               Margin="0 0 20 0" Foreground="White"/>
+           Content="New vehicle visual name:"     
+           Margin="0 0 20 0" Foreground="White"/>
                 <TextBox x:Name="textInputVisualName"      
-                 Height="20"        
-                 Width="150"
-                 Grid.Column="1" Background="White" TextChanged="setVisualName" Foreground="Black"/>
+             Height="20"        
+             Width="150"
+             Grid.Column="1" Background="White" TextChanged="setVisualName" Foreground="Black"/>
             </Grid>
-            <Button Click="generateConfig" Margin="0 10 0 10" Foreground="White" Background="Blue"> Configure and add new vehicle</Button>
+            <Button Click="generateConfig" Margin="0 10 0 10" Foreground="White" Background="Blue">Configure and add new vehicle</Button>
         </StackPanel>
     </Grid>
-</Window>
+</Page>

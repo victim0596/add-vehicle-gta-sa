@@ -1,16 +1,11 @@
-﻿using addVehicle.generatorLine;
-using addVehicle.generatorLine.Concrete;
-using addVehicle.generatorLine.Contract;
+﻿using addVehicle.generatorLine.Contract;
 using addVehicle.Model;
 using log4net;
-using log4net.Config;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,25 +16,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 namespace addVehicle
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logica di interazione per AddVehicle.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddWindow : Page
     {
         public Info info = new Info();
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly IMainGenerator _mainGenerator;
-        public MainWindow(IMainGenerator mainGenerator)
+        public AddWindow(IMainGenerator mainGenerator)
         {
-            log4net.Config.XmlConfigurator.Configure();
-            log.Info("Start application.");
             InitializeComponent();
             loadComboItem();
             loadDefaultConfig();
             informationPanel();
             _mainGenerator = mainGenerator;
+        }
+
+        public AddWindow()
+        {
         }
 
         public void loadComboItem()
@@ -64,7 +62,7 @@ namespace addVehicle
             string infoShow = System.Configuration.ConfigurationManager.AppSettings["infoPanelShow"];
             bool infoBool = false;
             bool Checkinfo = bool.TryParse(infoShow, out infoBool);
-            if (!Checkinfo) 
+            if (!Checkinfo)
             {
                 var caption = "Error";
                 var message = "infoPanelShow invalid value in app.config";
@@ -103,8 +101,8 @@ namespace addVehicle
         public void onDffVehicle(object sender, RoutedEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
-            dialog.DefaultExt = ".dff"; 
-            dialog.Filter = "Dff file (.dff)|*.dff"; 
+            dialog.DefaultExt = ".dff";
+            dialog.Filter = "Dff file (.dff)|*.dff";
             bool? result = dialog.ShowDialog();
             if (result == true)
             {
@@ -162,7 +160,7 @@ namespace addVehicle
         {
             int valueId = 0;
             bool check = int.TryParse(textInputId.Text, out valueId);
-            if (check) info.id = valueId;         
+            if (check) info.id = valueId;
         }
 
         public void setVisualName(object sender, RoutedEventArgs e)
@@ -174,10 +172,6 @@ namespace addVehicle
         {
             string value = "";
             info.idName = textInputvehicleNameId.Text;
-        }
-        private void Window_Closing(object sender, CancelEventArgs e)
-        {
-            log.Info("Application closed.");
         }
     }
 }

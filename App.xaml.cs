@@ -40,7 +40,6 @@ namespace addVehicle
             services.AddScoped<ISaveFile, SaveFile>();
             services.AddScoped<IMainGenerator, MainGenerator>();
             services.AddScoped<IGenLineLoader, GenLineLoader>();
-
             services.AddScoped<MainWindow>();
         }
     }
