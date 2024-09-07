@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:addVehicle"
              Startup ="OnStartup">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style/Button.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Style/BackButton.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Style/HomeButton.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

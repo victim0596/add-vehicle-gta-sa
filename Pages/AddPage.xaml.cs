@@ -1,4 +1,5 @@
-﻿using addVehicle.generatorLine.Contract;
+﻿using addVehicle.generatorLine.Concrete;
+using addVehicle.generatorLine.Contract;
 using addVehicle.Model;
 using log4net;
 using System;
@@ -17,17 +18,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace addVehicle
+namespace addVehicle.Pages
 {
     /// <summary>
     /// Logica di interazione per AddVehicle.xaml
     /// </summary>
-    public partial class AddWindow : Page
+    public partial class AddPage : Page
     {
         public Info info = new Info();
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private readonly IMainGenerator _mainGenerator;
-        public AddWindow(IMainGenerator mainGenerator)
+        public AddPage(IMainGenerator mainGenerator)
         {
             InitializeComponent();
             loadComboItem();
@@ -36,7 +37,7 @@ namespace addVehicle
             _mainGenerator = mainGenerator;
         }
 
-        public AddWindow()
+        public AddPage()
         {
         }
 
@@ -172,6 +173,11 @@ namespace addVehicle
         {
             string value = "";
             info.idName = textInputvehicleNameId.Text;
+        }
+
+        public void backToHome(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new HomePage(_mainGenerator));
         }
     }
 }

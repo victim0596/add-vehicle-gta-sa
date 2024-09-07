@@ -21,7 +21,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-namespace addVehicle
+namespace addVehicle.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -36,11 +36,15 @@ namespace addVehicle
             log.Info("Start application.");
             InitializeComponent();
         }
-
-       
         private void Window_Closing(object sender, CancelEventArgs e)
         {
             log.Info("Application closed.");
+        }
+
+        private void openSettings(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.ShowDialog();
         }
     }
 }

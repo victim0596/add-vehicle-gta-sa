@@ -10,13 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="icon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="icon.ico">
+    <Resource Include="Assets\backbutton.png" />
+    <Resource Include="Assets\backButtonHover.png" />
+    <Content Include="icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
