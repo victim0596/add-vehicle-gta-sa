@@ -23,7 +23,7 @@
                 <Label     
            Content="GTA SA Directory:"     
            Margin="0 0 20 0" Foreground="White"/>
-                <Button Grid.Column="1" x:Name="ButtonDirectory" Click="openFolder" Padding="5 5 5 5">Select Directory</Button>
+                <Button Grid.Column="1" x:Name="ButtonDirectory" Click="openFolder" Style="{DynamicResource btnHome}" Padding="5 5 5 5">Select Directory</Button>
             </Grid>
             <Grid Margin="0 0 0 10">
                 <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
                 <Label     
            Content="Vehicle Dff:"     
            Margin="0 0 20 0" Foreground="White"/>
-                <Button Grid.Column="1" x:Name="dffVehicle" Click="onDffVehicle" Padding="5 5 5 5">Select File</Button>
+                <Button Grid.Column="1" x:Name="dffVehicle" Click="onDffVehicle" Padding="5 5 5 5" Style="{DynamicResource btnHome}">Select File</Button>
             </Grid>
             <Grid Margin="0 0 0 10">
                 <Grid.ColumnDefinitions>
@@ -43,7 +43,7 @@
                 <Label     
            Content="Vehicle Txd:"     
            Margin="0 0 20 0" Foreground="White"/>
-                <Button Grid.Column="1" x:Name="txdVehicle" Click="onTxdVehicle" Padding="5 5 5 5">Select File</Button>
+                <Button Grid.Column="1" x:Name="txdVehicle" Click="onTxdVehicle" Style="{DynamicResource btnHome}" Padding="5 5 5 5">Select File</Button>
             </Grid>
             <Grid x:Name="gridTypeVehicleSelection" Margin="0 0 0 10">
                 <Grid.ColumnDefinitions>
@@ -115,7 +115,7 @@
              Width="150"
              Grid.Column="1" Background="White" TextChanged="setVisualName" Foreground="Black"/>
             </Grid>
-            <Button Click="generateConfig" Margin="0 10 0 10" Foreground="White" Background="Blue">Configure and add new vehicle</Button>
+            <Button Click="generateConfig" Margin="0 10 0 10" Foreground="White" Background="Blue" Style="{DynamicResource btnHome}">Configure and add new vehicle</Button>
         </StackPanel>
     </Grid>
 </Page>

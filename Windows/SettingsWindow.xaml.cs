@@ -85,7 +85,7 @@ namespace addVehicle.Windows
             }
             catch (Exception ex)
             {
-                Errorbox.Show("There is some problem on saving configuration. Check log for detail.");
+                Errorbox.Show("There is a problem on saving configuration. Check log for detail.");
                 log.Error($"Error: {ex.Message}\n ErrorDetail: {ex.InnerException?.Message ?? ""}");
             }
             

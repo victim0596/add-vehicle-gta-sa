@@ -147,12 +147,10 @@ namespace addVehicle.Pages
 
         public void setVisualName(object sender, RoutedEventArgs e)
         {
-            string value = "";
             info.visualName = textInputVisualName.Text;
         }
         public void setVehicleNameId(object sender, RoutedEventArgs e)
         {
-            string value = "";
             info.idName = textInputvehicleNameId.Text;
         }
 
