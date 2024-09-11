@@ -1,4 +1,5 @@
 ﻿using addVehicle.generatorLine.Contract;
+using addVehicle.Windows;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -39,6 +40,11 @@ namespace addVehicle.Pages
         {
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
             e.Handled = true;
+        }
+        private void openSettings(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.ShowDialog();
         }
     }
 }

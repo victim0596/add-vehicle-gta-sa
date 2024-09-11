@@ -9,12 +9,6 @@
         Closing="Window_Closing" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
         >
     <Grid>
-        <DockPanel>
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="_Settings" Click="openSettings"/>
-            </Menu>
-            <StackPanel></StackPanel>
-        </DockPanel>
         <Frame Source="../Pages/HomePage.xaml" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

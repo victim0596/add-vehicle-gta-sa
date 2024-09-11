@@ -40,11 +40,6 @@ namespace addVehicle.Windows
         {
             log.Info("Application closed.");
         }
-
-        private void openSettings(object sender, RoutedEventArgs e)
-        {
-            SettingsWindow settingsWindow = new SettingsWindow();
-            settingsWindow.ShowDialog();
-        }
+       
     }
 }
