@@ -9,12 +9,11 @@ namespace addVehicle.Utilities
 {
     public static class Errorbox
     {
-        public static void Show(string errorMessage)
+        public static void Show(string errorMessage, string title = "Error")
         {
-            var caption = "Error";
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBoxImage icon = MessageBoxImage.Error;
-            MessageBox.Show(errorMessage, caption, button, icon, MessageBoxResult.OK);
+            MessageBox.Show(errorMessage, title, button, icon, MessageBoxResult.OK);
         }
     }
 }

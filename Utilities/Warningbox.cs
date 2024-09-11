@@ -9,12 +9,11 @@ namespace addVehicle.Utilities
 {
     public static class Warningbox
     {
-        public static void Show(string warningMessage)
+        public static void Show(string warningMessage, string title = "Warning")
         {
-            var caption = "Warning";
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBox.Show(warningMessage, caption, button, icon, MessageBoxResult.OK);
+            MessageBox.Show(warningMessage, title, button, icon, MessageBoxResult.OK);
         }
     }
 }

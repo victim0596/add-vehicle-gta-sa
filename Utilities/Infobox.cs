@@ -9,12 +9,11 @@ namespace addVehicle.Utilities
 {
     public static class Infobox
     {
-        public static void Show(string infoMessage)
+        public static void Show(string infoMessage, string title = "Information")
         {
-            var caption = "Information";
             MessageBoxButton button = MessageBoxButton.OK;
             MessageBoxImage icon = MessageBoxImage.Information;
-            MessageBox.Show(infoMessage, caption, button, icon, MessageBoxResult.OK);
+            MessageBox.Show(infoMessage, title, button, icon, MessageBoxResult.OK);
         }
     }
 }
