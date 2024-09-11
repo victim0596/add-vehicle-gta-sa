@@ -1,5 +1,6 @@
 ﻿using addVehicle.Model;
 using addVehicle.Utilities;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -23,6 +24,7 @@ namespace addVehicle.Windows
     public partial class SettingsWindow : Window
     {
         public Setting settings = new Setting();
+        private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public SettingsWindow()
         {
             InitializeComponent();
@@ -72,11 +74,21 @@ namespace addVehicle.Windows
 
         public void saveSettings(object sender, RoutedEventArgs e)
         {
-            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-            config.AppSettings.Settings["dirGta"].Value = settings.pathGta;
-            config.AppSettings.Settings["infoPanelShow"].Value = settings.showInfoAlertAddPage.ToString();
-            config.Save(ConfigurationSaveMode.Modified);
+            try
+            {
+                System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["dirGta"].Value = settings.pathGta;
+                config.AppSettings.Settings["infoPanelShow"].Value = settings.showInfoAlertAddPage.ToString();
+                config.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection("appSettings");
+                Infobox.Show("Configuration saved successfully.");
+            }
+            catch (Exception ex)
+            {
+                Errorbox.Show("There is some problem on saving configuration. Check log for detail.");
+                log.Error($"Error: {ex.Message}\n ErrorDetail: {ex.InnerException?.Message ?? ""}");
+            }
+            
         }
 
         public void setInfoPanel(object sender, RoutedEventArgs e)
