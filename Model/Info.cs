@@ -1,4 +1,5 @@
-﻿using log4net;
+﻿using addVehicle.Utilities;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace addVehicle.Model
 {
@@ -27,8 +27,8 @@ namespace addVehicle.Model
         #endregion
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public Info() 
-        { 
+        public Info()
+        {
             txdVehicle = new VehicleInfo();
             dffVehicle = new VehicleInfo();
         }
@@ -42,10 +42,7 @@ namespace addVehicle.Model
             checkVehicleFile();
             if (errorMessage.Length > 0)
             {
-                string caption = "Check Field";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBox.Show(errorMessage, caption, button, icon, MessageBoxResult.OK);
+                Errorbox.Show(errorMessage);
                 log.Info("Control field phase finished.");
                 return false;
             }
@@ -65,7 +62,7 @@ namespace addVehicle.Model
                 errorMessage += "No dff file uploaded.\n";
                 log.Error("No dff file uploaded.");
             }
-            if(!string.IsNullOrEmpty(txdVehicle.path) && !string.IsNullOrEmpty(dffVehicle.path))
+            if (!string.IsNullOrEmpty(txdVehicle.path) && !string.IsNullOrEmpty(dffVehicle.path))
             {
                 if (txdVehicle.name != dffVehicle.name)
                 {
@@ -92,7 +89,7 @@ namespace addVehicle.Model
                 errorMessage += "Empty ID name.\n";
                 log.Error("Empty ID name.");
             }
-            if(idName.Any(x => Char.IsWhiteSpace(x)))
+            if (idName.Any(x => Char.IsWhiteSpace(x)))
             {
                 errorMessage += "Empty spaces in ID name.\n";
                 log.Error("Empty spaces in ID name.");
@@ -107,7 +104,7 @@ namespace addVehicle.Model
                 errorMessage += "No vehicle found. Choose another reference.\n";
                 log.Error("No vehicle found. Choose another reference.");
             }
-            if(string.IsNullOrEmpty(nameTypeVehicleToCopy))
+            if (string.IsNullOrEmpty(nameTypeVehicleToCopy))
             {
                 errorMessage += "No type vehicle found. Choose another option.\n";
                 log.Error("No type vehicle found. Choose another option.");
@@ -130,7 +127,7 @@ namespace addVehicle.Model
                 log.Error("No gta_sa.exe found in GTA SA Directory.");
             }
             //Check modloader folder exists
-            modLoaderFolder = pathGta+"\\modloader";
+            modLoaderFolder = pathGta + "\\modloader";
             if (!Directory.Exists(modLoaderFolder))
             {
                 errorMessage += "No modloader folder found in GTA SA Directory.\n";

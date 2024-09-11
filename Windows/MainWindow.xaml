@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:addVehicle.Windows" 
         mc:Ignorable="d"
         Title="GTA SA New Vehicle" Height="550" Width="800" Background="Black"
-        Closing="Window_Closing" ResizeMode="CanMinimize"
+        Closing="Window_Closing" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen"
         >
     <Grid>
         <DockPanel>

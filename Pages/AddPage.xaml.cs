@@ -1,6 +1,7 @@
 ﻿using addVehicle.generatorLine.Concrete;
 using addVehicle.generatorLine.Contract;
 using addVehicle.Model;
+using addVehicle.Utilities;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -63,22 +64,8 @@ namespace addVehicle.Pages
             string infoShow = System.Configuration.ConfigurationManager.AppSettings["infoPanelShow"];
             bool infoBool = false;
             bool Checkinfo = bool.TryParse(infoShow, out infoBool);
-            if (!Checkinfo)
-            {
-                var caption = "Error";
-                var message = "infoPanelShow invalid value in app.config";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Error;
-                MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
-            }
-            if (infoBool)
-            {
-                var caption = "Information";
-                var message = "Remember first to edit fastman92limitAdjuster_GTASA.ini properly. Please, read the info.md.";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Information;
-                MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
-            }
+            if (!Checkinfo) Errorbox.Show("infoPanelShow invalid value in app.config");
+            if (infoBool) Infobox.Show("Remember first to edit fastman92limitAdjuster_GTASA.ini properly. Please, read the info.md.");
         }
 
         public void openFolder(object sender, RoutedEventArgs e)
@@ -135,13 +122,7 @@ namespace addVehicle.Pages
         {
             IList<string> specialVehicle = new List<string> { "ZR350", "HYDRA" };
             if (specialVehicle.Contains(info.nameVehicleToCopy))
-            {
-                var caption = "Information";
-                var message = $"You are choosing a special vehicle. Add another line for {info.nameVehicleToCopy} in fastman92limitAdjuster_GTASA.ini with its ID number {info.id}.";
-                MessageBoxButton button = MessageBoxButton.OK;
-                MessageBoxImage icon = MessageBoxImage.Warning;
-                MessageBox.Show(message, caption, button, icon, MessageBoxResult.OK);
-            }
+                Warningbox.Show($"You are choosing a special vehicle. Add another line for {info.nameVehicleToCopy} in fastman92limitAdjuster_GTASA.ini with its ID number {info.id}.");
             if (info.checkField())
             {
                 List<Generator> genResult = await _mainGenerator.start(info);

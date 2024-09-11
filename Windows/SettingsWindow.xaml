@@ -5,10 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:addVehicle.Windows"
         mc:Ignorable="d"
-        Title="SettingsWindow" Height="300" Width="300" Background="Black"         
+        Title="SettingsWindow" Height="200" Width="350" Background="Black"         
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        
+        <StackPanel Orientation="Vertical" Margin="15">
+            <Grid Margin="0 0 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="FirstColumn" Width="150"/>
+                    <ColumnDefinition SharedSizeGroup="SecondColumn"/>
+                </Grid.ColumnDefinitions>
+                <Label     
+                   Content="GTA SA Directory:" Foreground="White"/>
+                <Button Grid.Column="1" x:Name="ButtonDirectory" Click="openFolder">Select Directory
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="White" TargetName="Border" />
+                                                <Setter Property="TextElement.Foreground" Value="Black" TargetName="Border" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+            <Grid Margin="0 0 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition SharedSizeGroup="SecondColumn" Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Label     
+                    Content="Show information alert on adding page:"     
+                    Margin="0 0 0 0" Foreground="White"/>
+                <CheckBox Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="checkBoxInfoPanel" Click="setInfoPanel"></CheckBox>
+            </Grid>
+            <Grid Margin="0 20 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="FirstColumn"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Save" Width="80" Foreground="White" Background="Green" FontFamily="Eras ITC" FontSize="18" Click="saveSettings">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="15"/>
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="White" TargetName="Border" />
+                                                <Setter Property="TextElement.Foreground" Value="Black" TargetName="Border" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>
